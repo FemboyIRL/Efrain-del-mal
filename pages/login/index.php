@@ -28,12 +28,16 @@
                             <input type="text" name="user" placeholder="Usuario/Matricula" required>
                             <i class='bx bxs-user'></i>
                         </div>
-                        <?php if (isset($error_message)) : ?>
-                            <p style="color: red;"><?php echo $error_message; ?></p>
-                        <?php endif; ?>
                         <div class="input-box">
                             <input type="password" name="password" placeholder="Contraseña" required>
                             <i class='bx bxs-lock'></i>
+                        </div>
+                        <div class="error">
+                            <?php
+                            if (isset($_GET['error']) && $_GET['error'] == 1) {
+                                echo "<p>Credenciales incorrectas. Por favor, inténtalo de nuevo.</p>";
+                            }
+                            ?>
                         </div>
                         <div class="remember-forgot">
                             <label>
