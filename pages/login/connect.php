@@ -20,8 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['idPersona'] = $row['id_persona'];
         $_SESSION['usuario'] = $row['matricula'];
         $_SESSION['password'] = $row['password'];
-        $_SESSION['nombre'] = $row['nombre'];
-        $_SESSION['apellido'] = $row['apellido'];
+        $_SESSION['nombres'] = $row['nombres'];
+        $_SESSION['apellidoPaterno'] = $row['apellidopaterno'];
+        $_SESSION['apellidoMaterno'] = $row['apellidomaterno'];
+
 
         session_regenerate_id(true); 
 
@@ -39,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
     } else {
-        $error_message = "Credenciales incorrectas";
         header("Location: index.php?error=1");
         exit;
     }

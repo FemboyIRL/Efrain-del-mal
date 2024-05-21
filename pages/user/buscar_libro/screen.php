@@ -1,4 +1,5 @@
 <?php
+session_start();
 $connection = pg_connect("host=localhost dbname=BibliotecaFinal user=postgres password=1234");
 if (!$connection) {
     echo "Ha ocurrido un error";
@@ -12,12 +13,11 @@ if (isset($_GET['searchBar']) && $_GET['searchBar'] != '') {
 } elseif (isset($_GET['categories']) && $_GET['categories'] != '') {
     $category = pg_escape_string($_GET['categories']);
     $query = "SELECT * FROM libros WHERE categoria = '$category' ORDER BY calificacion DESC";
-} elseif (isset($_GET['excludedCategories']) && $_GET['excludedCategories'] != ''){
+} elseif (isset($_GET['excludedCategories']) && $_GET['excludedCategories'] != '') {
     $category = pg_escape_string($_GET['excludedCategories']);
     $query = "SELECT * FROM libros WHERE categoria != '$category' ORDER BY calificacion DESC";
-} else{
+} else {
     $query = "SELECT * FROM libros ORDER BY calificacion DESC";
-
 }
 
 $result = pg_query($connection, $query);
@@ -57,8 +57,10 @@ $result2 = pg_query($connection, $query2);
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
                             Bienvenido <?php
-                                        if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) {
-                                            echo htmlspecialchars($_SESSION['nombre']) . " " . htmlspecialchars($_SESSION['apellido']);
+                                        if (isset($_SESSION['nombres']) && isset($_SESSION['apellidoPaterno']) && isset($_SESSION['apellidoMaterno'])) {
+                                            echo htmlspecialchars($_SESSION['nombres']) . " " . htmlspecialchars($_SESSION['apellidoPaterno']) . " " . htmlspecialchars($_SESSION['apellidoMaterno']);
+                                        } elseif (isset($_SESSION['nombres']) && isset($_SESSION['apellidoPaterno'])) {
+                                            echo htmlspecialchars($_SESSION['nombres']) . " " . htmlspecialchars($_SESSION['apellidoPaterno']);
                                         } else {
                                             echo "Invitado";
                                         }
@@ -81,7 +83,7 @@ $result2 = pg_query($connection, $query2);
                                     <?php
                                     if (pg_num_rows($result2) > 0) {
                                         while ($row = pg_fetch_assoc($result2)) {
-                                            echo "<li><a class='dropdown-item' href='#'>" . $row['categoria'] . "</a></li>";
+                                            echo "<li><a class='dropdown-item' href='../buscar_libro/screen.php?categories=" . urlencode($row['categoria']) . "'>" . $row['categoria'] . "</a></li>";
                                         }
                                     } else {
                                         echo "<li><a class='dropdown-item' href='#'>No hay categorías disponibles</a></li>";

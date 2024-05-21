@@ -1,5 +1,5 @@
 <?php
-include '../../login/connect.php'; 
+session_start();
 
 $connection = pg_connect("host=localhost dbname=BibliotecaFinal user=postgres password=1234");
 if (!$connection) {
@@ -39,8 +39,10 @@ $result = pg_query($connection, $query);
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
                             Bienvenido <?php
-                                        if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) {
-                                            echo htmlspecialchars($_SESSION['nombre']) . " " . htmlspecialchars($_SESSION['apellido']);
+                                         if (isset($_SESSION['nombres']) && isset($_SESSION['apellidoPaterno']) && isset($_SESSION['apellidoMaterno'])) {
+                                            echo htmlspecialchars($_SESSION['nombres']) . " " . htmlspecialchars($_SESSION['apellidoPaterno']) . " " . htmlspecialchars($_SESSION['apellidoMaterno']);
+                                        } elseif (isset($_SESSION['nombres']) && isset($_SESSION['apellidoPaterno'])) {
+                                            echo htmlspecialchars($_SESSION['nombres']) . " " . htmlspecialchars($_SESSION['apellidoPaterno']);
                                         } else {
                                             echo "Invitado";
                                         }
@@ -63,7 +65,7 @@ $result = pg_query($connection, $query);
                                     <?php
                                     if (pg_num_rows($result) > 0) {
                                         while ($row = pg_fetch_assoc($result)) {
-                                            echo "<li><a class='dropdown-item' href='#'>" . $row['categoria'] . "</a></li>";
+                                            echo "<li><a class='dropdown-item' href='../buscar_libro/screen.php?categories=" . urlencode($row['categoria']) . "'>" . $row['categoria'] . "</a></li>";
                                         }
                                     } else {
                                         echo "<li><a class='dropdown-item' href='#'>No hay categorías disponibles</a></li>";

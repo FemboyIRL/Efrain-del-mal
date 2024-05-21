@@ -37,7 +37,15 @@ $result2 = pg_query($connection, $query2);
                 <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
-                            Bienvenido <%nombreUsuario%>
+                            Bienvenido <?php 
+                            if (isset($_SESSION['nombres']) && isset($_SESSION['apellidoPaterno']) && isset($_SESSION['apellidoMaterno'])) {
+                                echo htmlspecialchars($_SESSION['nombres']) . " " . htmlspecialchars($_SESSION['apellidoPaterno']) . " " . htmlspecialchars($_SESSION['apellidoMaterno']);
+                            } elseif (isset($_SESSION['nombres']) && isset($_SESSION['apellidoPaterno'])) {
+                                echo htmlspecialchars($_SESSION['nombres']) . " " . htmlspecialchars($_SESSION['apellidoPaterno']);
+                            } else {
+                                echo "Invitado";
+                            }
+                            ?>
                         </h5>
                         <button id="close" type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
@@ -56,7 +64,7 @@ $result2 = pg_query($connection, $query2);
                                     <?php
                                     if (pg_num_rows($result2) > 0) {
                                         while ($row = pg_fetch_assoc($result2)) {
-                                            echo "<li><a class='dropdown-item' href='#'>" . $row['categoria'] . "</a></li>";
+                                            echo "<li><a class='dropdown-item' href='../buscar_libro/screen.php?categories=" . urlencode($row['categoria']) . "'>" . $row['categoria'] . "</a></li>";
                                         }
                                     } else {
                                         echo "<li><a class='dropdown-item' href='#'>No hay categorías disponibles</a></li>";
