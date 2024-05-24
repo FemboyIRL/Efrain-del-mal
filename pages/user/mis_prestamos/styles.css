@@ -1,0 +1,33 @@
+.small-card {
+    width: 300px; 
+}
+
+.align-right {
+    padding-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.containerTable{
+    position: absolute;
+    top: 23%;
+    left: 1%;
+    width: 70%;
+}
+
+.error{
+    text-align: center;
+      color: red;
+      font-weight: bold;
+      margin-bottom: 30px;
+  }
+
+.prestamoExitoso{
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.btn-outline-primary{
+    justify-content: center;
+}

@@ -18,11 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = pg_fetch_assoc($result);
 
         $_SESSION['idPersona'] = $row['id_persona'];
-        $_SESSION['usuario'] = $row['matricula'];
+        $_SESSION['matricula'] = $row['matricula'];
+        $_SESSION['correo'] = $row['correo'];
         $_SESSION['password'] = $row['password'];
         $_SESSION['nombres'] = $row['nombres'];
         $_SESSION['apellidoPaterno'] = $row['apellidopaterno'];
         $_SESSION['apellidoMaterno'] = $row['apellidomaterno'];
+        $_SESSION['telefono'] = $row['telefono'];
 
 
         session_regenerate_id(true); 

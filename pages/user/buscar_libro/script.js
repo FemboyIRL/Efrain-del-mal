@@ -7,6 +7,7 @@ function toggleCardBody2() {
   var cardBody = document.getElementById("cardBody2");
   cardBody.classList.toggle("d-none");
 }
+
 var myModal = document.getElementById("staticBackdrop");
 myModal.addEventListener("show.bs.modal", function (event) {
   var button = event.relatedTarget;

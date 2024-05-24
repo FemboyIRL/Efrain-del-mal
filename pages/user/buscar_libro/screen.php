@@ -6,7 +6,6 @@ if (!$connection) {
     exit;
 }
 
-
 if (isset($_GET['searchBar']) && $_GET['searchBar'] != '') {
     $searchBar = pg_escape_string($_GET['searchBar']);
     $query = "SELECT * FROM libros WHERE autor LIKE '%$searchBar%' OR titulo LIKE '%$searchBar%' OR isbn LIKE '%$searchBar%' ORDER BY calificacion DESC";
@@ -256,10 +255,13 @@ $result2 = pg_query($connection, $query2);
                 <table class="table">
                     <thead class="table-dark">
                         <tr>
-                            <th scope="col">Título</th>
-                            <th scope="col">ISBN</th>
-                            <th scope="col">Autor</th>
-                            <th scope="col">Categoría</th>
+                            <th scope="col" class='col-2'>Título</th>
+                            <th scope="col" class='col-2'>ISBN</th>
+                            <th scope="col" class='col-2'>Autor</th>
+                            <th scope="col" class='col-2'>Categoría</th>
+                            <th scope="col" class='col-2'>Pedir Prestamo</th>
+                            <th scope="col" class='col-1'>Copias</th>
+                            <th scope="col" class='col-1'>Calificación</th>
                         </tr>
                     </thead>
                 </table>
@@ -273,16 +275,16 @@ $result2 = pg_query($connection, $query2);
                         if (pg_num_rows($result) > 0) {
                             while ($row = pg_fetch_assoc($result)) {
                                 echo "<tr>";
-                                echo "<td>" . $row["titulo"] . "</td>";
-                                echo "<td>" . $row["isbn"] . "</td>";
-                                echo "<td>" . $row["autor"] . "</td>";
-                                echo "<td>" . $row["categoria"] . "</td>";
-                                echo "<td>  <button type='button' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#staticBackdrop' data-libro='" . $row["titulo"] . "'>
-                            <i class='bi bi-bookmark'></i> 
+                                echo "<td class='col-2'>" . $row["titulo"] . "</td>";
+                                echo "<td class='col-2'>" . $row["isbn"] . "</td>";
+                                echo "<td class='col-2'>" . $row["autor"] . "</td>";
+                                echo "<td class='col-2'>" . $row["categoria"] . "</td>";
+                                echo "<td class='col-2'>  <button type='button' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#staticBackdrop' data-libro='" . $row["titulo"] . "'>
+                            <i class='bi bi-bookmark-plus-fill'></i> 
                           </button>
                            </td>";
-                                echo "<td>" . $row["numerodecopiasdisponibles"] . "/" . $row["numerodecopias"] . "</td>";
-                                echo "<td>" . $row["calificacion"] . " <i class='bi bi-star-fill'></i>         </td>";
+                                echo "<td class='col-1'>" . $row["numerodecopiasdisponibles"] . "/" . $row["numerodecopias"] . "</td>";
+                                echo "<td class='col-1'>" . $row["calificacion"] . " <i class='bi bi-star-fill'></i>         </td>";
                                 echo "</tr>";
                             }
                         } else {
@@ -294,6 +296,7 @@ $result2 = pg_query($connection, $query2);
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
