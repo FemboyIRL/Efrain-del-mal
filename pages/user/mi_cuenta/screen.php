@@ -111,8 +111,8 @@ $result2 = pg_query($connection, $query2);
                                 </ul>
                             </li>
                         </ul>
-                        <form class="d-flex mt-3" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Buscar por Libro, Autor, Editorial, ISBN" aria-label="Search">
+                        <form class="d-flex mt-3" action="search.php" method="POST" role="search">
+                            <input class="form-control me-2" name="search_query" type="search" placeholder="Buscar por Libro, Autor o ISBN" aria-label="Search">
                             <button class="btn btn-success" type="submit">
                                 Buscar
                             </button>
@@ -160,11 +160,11 @@ $result2 = pg_query($connection, $query2);
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">E-mail</label>
-                                        <input type="text" class="form-control mb-1"  name="email" value="<?php echo $correo ?>">
+                                        <input type="text" class="form-control mb-1" name="email" value="<?php echo $correo ?>">
                                     </div>
                                     <div class="error">
-                                        <?php 
-                                         if (isset($_GET['errorChange']) && $_GET['errorChange'] == 1) {
+                                        <?php
+                                        if (isset($_GET['errorChange']) && $_GET['errorChange'] == 1) {
                                             echo "<p>Error al actualizar la contraseña.</p>";
                                         }
                                         if (isset($_GET['errorPassword']) && $_GET['errorPassword'] == 1) {

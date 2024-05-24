@@ -211,8 +211,8 @@ $result2 = pg_query($connection, $query2);
                                 </ul>
                             </li>
                         </ul>
-                        <form class="d-flex mt-3" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Buscar por Libro, Autor, Editorial, ISBN" aria-label="Search">
+                        <form class="d-flex mt-3" action="search.php" method="POST" role="search">
+                            <input class="form-control me-2" name="search_query" type="search" placeholder="Buscar por Libro, Autor o ISBN" aria-label="Search">
                             <button class="btn btn-success" type="submit">
                                 Buscar
                             </button>
@@ -426,5 +426,4 @@ $result2 = pg_query($connection, $query2);
             </div>
         </div>
 </body>
-
 </html>
