@@ -190,3 +190,10 @@ body {
     font-weight: bold;
     margin-bottom: 30px;
 }
+
+.exito{
+  text-align: center;
+    color: green;
+    font-weight: bold;
+    margin-bottom: 30px;
+}

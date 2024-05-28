@@ -1,0 +1,200 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Courier New", Courier, monospace;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e4ee;
+    perspective: 1600px;
+}
+
+.book {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.book:hover .cover {
+    transform: rotateX(20deg) rotateY(-180deg);
+}
+
+.book:hover .page {
+    transform: rotateX(20deg) rotateY(-180deg);
+    z-index: 2;
+}
+
+.cover {
+    z-index: 1;
+    transition: all 3s;
+}
+
+.cover h3 {
+    margin-top: 80px; /* Se aumenta el margen superior */
+    text-align: center;
+    font-weight: bold; /* Se aumenta el peso de la fuente */
+    font-size: 36px; /* Se aumenta el tamaño de la fuente */
+    color: #f4f4f4;
+}
+
+.back-cover {
+    z-index: -2;
+}
+
+.cover,
+.back-cover {
+    height: 600px; /* Se aumenta la altura */
+    width: 533px; /* Se aumenta el ancho */
+    background-color: #353755;
+    border-radius: 2px 20px 20px 2px;
+    position: absolute;
+    box-shadow: 1px 1px 10px gray;
+    transform: rotateX(16deg);
+    transform-origin: center left;
+}
+
+.page,
+.last-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 580px; /* Se aumenta la altura */
+    width: 513px; /* Se aumenta el ancho */
+    background: white;
+    position: absolute;
+    border-radius: 2px 10px 10px 2px;
+    transform: rotateX(16deg);
+    transform-origin: center left;
+    z-index: -1;
+}
+
+.page:nth-child(2) {
+    transition-duration: 3s;
+}
+
+.page:nth-child(3) {
+    transition-duration: 2.6s;
+}
+
+.page:nth-child(4) {
+    transition-duration: 2.2s;
+}
+
+.page:nth-child(5) {
+    transition-duration: 1.8s;
+}
+
+.page:nth-child(6) {
+    transition-duration: 1.4s;
+}
+
+.book:hover .page:nth-child(2) {
+    transition-duration: 6s;
+}
+
+.book:hover .page:nth-child(3) {
+    transition-duration: 5.6s;
+}
+
+.book:hover .page:nth-child(4) {
+    transition-duration: 5.2s;
+}
+
+.book:hover .page:nth-child(5) {
+    transition-duration: 4.8s;
+}
+
+.book:hover .page:nth-child(6) {
+    transition-duration: 4.4s;
+}
+
+.cover img {
+    width: 300px; /* Se aumenta el tamaño de la imagen */
+    display: block;
+    border-radius: 50%;
+    margin: 40px auto; /* Se aumenta el margen */
+    z-index: -1;
+}
+
+.last-page-content h2 {
+    font-size: 36px; /* Se aumenta el tamaño de la fuente */
+    text-align: center;
+}
+
+.last-page-content .input-box {
+    position: relative;
+    padding: 0 20px; /* Se mantiene el padding */
+    width: 90%;
+    height: 50px; /* Se mantiene la altura */
+    margin: 12px 0; 
+}
+
+.input-box input {
+    padding: 0px 10px;
+    width: 95%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 40px;
+}
+
+.input-box i {
+    position: absolute;
+    right: 40px;
+    font-size: 20px;
+    top: 55%;
+    transform: translateY(-55%);
+}
+
+.last-page-content .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px; /* Se reduce el tamaño de la fuente */
+    margin: -20px 0 20px; /* Se aumenta el margen */
+}
+
+.remember-forgot a {
+    color: black;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.last-page-content .btn {
+    width: 100%;
+    height: 60px; /* Se aumenta la altura */
+    background: blue;
+    border: none;
+    outline: none;
+    border-radius: 50px; /* Se aumenta el radio del borde */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 24px; /* Se aumenta el tamaño de la fuente */
+    color: #333;
+    font-weight: 600;
+}
+
+.register-link {
+    font-size: 20px; /* Se aumenta el tamaño de la fuente */
+    text-align: center;
+    margin-top: 30px; /* Se aumenta el margen superior */
+}
+
+.error {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.login-link{
+    margin-top: 20px;
+}

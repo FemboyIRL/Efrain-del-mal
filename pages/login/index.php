@@ -39,6 +39,13 @@
                             }
                             ?>
                         </div>
+                        <div class="exito">
+                            <?php
+                            if (isset($_GET['exito']) && $_GET['exito'] == 1) {
+                                echo "<p>Registro exitoso</p>";
+                            }
+                            ?>
+                        </div>
                         <div class="remember-forgot">
                             <label>
                                 <input type="checkbox">
@@ -52,7 +59,7 @@
                         <div class="register-link">
                             <p>
                                 No tienes una cuenta?
-                                <a href="#">Registrate</a>
+                                <a href="../register/screen.php">Registrate</a>
                             </p>
                         </div>
                     </form>
